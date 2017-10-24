@@ -5,8 +5,6 @@ const api = {
             return fetch(url)
                     .then((res) => {
                         return res.json();
-                    }).catch((err) => {
-                        console.log(err)
                     });
     },
     getBio : (username) => {
@@ -15,9 +13,7 @@ const api = {
         return fetch(url)
                 .then((res) => {
                     return res.json();
-                }).catch((err) => {
-                    console.log(err)
-                });;
+                });
     }
 }
 

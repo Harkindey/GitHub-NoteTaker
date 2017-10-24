@@ -15,7 +15,7 @@ class Dashboard extends Component {
         return (
             <View style={styles.container}>
                 <Text> This is the Dashboard</Text>
-                <Text></Text>
+                <Text>bean</Text>
             </View>
         )
     }

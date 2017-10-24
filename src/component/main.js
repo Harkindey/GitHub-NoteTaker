@@ -7,7 +7,7 @@ import {
   NavigatorIOS,
   TextInput,
   TouchableHighlight,
-  ActivityIndicatorIOS
+  ActivityIndicator
 } from 'react-native';
 import api from '../utils/api'
 import Dashboard from './Dashboard' 
@@ -29,14 +29,13 @@ class Main extends Component {
       }
 
       handleSubmit() {
-        //update our indocatorIOS spinner
         this.setState({
             isLoading: true
         });
         api.getRepos(this.state.username)
             .then((res) => {
-                console.log(res)
-                if (res.message === 'NOT FOUND'){
+                console.log(res.message)
+                if (res.message === "NOT FOUND"){
                     this.setState({
                         error: 'User not Found',
                         isLoading: false
@@ -54,11 +53,12 @@ class Main extends Component {
                     })
                 }
             });
-        //fetch data from github
-        //reroute to the next passing in the guthub info
-      }
-
+    }
+    
     render(){
+        const showErr = (
+            this.state.error ? <Text> {this.state.error} </Text> : <View></View>
+        );
         return (
             <View style={styles.mainContainer}>
                 <Text style={styles.title}> Search For a Github User</Text>
@@ -72,6 +72,11 @@ class Main extends Component {
                     underlayColor="white">
                     <Text style={styles.buttonText}>SEARCH</Text>
                 </TouchableHighlight>
+                <ActivityIndicator
+                    animating={this.state.isLoading}
+                     color="#111"
+                     size='large'></ActivityIndicator>
+                     {showErr}
             </View>
         )
     }
