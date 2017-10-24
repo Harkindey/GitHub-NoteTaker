@@ -12,7 +12,7 @@ import {
   View,
   NavigatorIOS,
 } from 'react-native';
-import Main from './src/component/main'
+import Main from './src/component/Main'
 
 // const instructions = Platform.select({
 //   ios: 'Press Cmd+R to reload,\n' +

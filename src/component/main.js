@@ -9,6 +9,7 @@ import {
   TouchableHighlight,
   ActivityIndicatorIOS
 } from 'react-native';
+import api from '../utils/api'
 
 class Main extends Component {
     constructor(props){
@@ -29,9 +30,28 @@ class Main extends Component {
       handleSubmit() {
         //update our indocatorIOS spinner
         this.setState({
-            isLaoding: true
+            isLoading: true
         });
-        console.log('SUBMIT', this.state.username);
+        api.getRepos(this.state.username)
+            .then((res) => {
+                if (res.message === 'NOT FOUND'){
+                    this.setState({
+                        error: 'User not Found',
+                        isLoading: false
+                    })
+                } else {
+                    this.props.navigator.push({
+                        title: res.name || "Select an Option",
+                        Component: Dashboard,
+                        passProps: {userInfo: res}
+                    });
+                    this.state({
+                        isLoading: false,
+                        error: false,
+                        username: ''
+                    })
+                }
+            });
         //fetch data from github
         //reroute to the next passing in the guthub info
       }
