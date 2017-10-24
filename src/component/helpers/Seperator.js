@@ -14,7 +14,7 @@ import {
 class Seperator extends Component{
     render () {
         return (
-            <View style={styles.seperator} />
+            <View style={styles.seperator}/>
         )
     }
 }
