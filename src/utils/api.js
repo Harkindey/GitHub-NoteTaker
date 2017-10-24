@@ -4,7 +4,9 @@ const api = {
             var url = `https://api.github.com/users/${username}/repos`;
             return fetch(url)
                     .then((res) => {
-                        res.json();
+                        return res.json();
+                    }).catch((err) => {
+                        console.log(err)
                     });
     },
     getBio : (username) => {
@@ -12,8 +14,10 @@ const api = {
         var url = `https://api.github.com/users/${username}`;
         return fetch(url)
                 .then((res) => {
-                    res.json();
-                });
+                    return res.json();
+                }).catch((err) => {
+                    console.log(err)
+                });;
     }
 }
 

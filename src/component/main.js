@@ -10,6 +10,7 @@ import {
   ActivityIndicatorIOS
 } from 'react-native';
 import api from '../utils/api'
+import Dashboard from './Dashboard' 
 
 class Main extends Component {
     constructor(props){
@@ -34,6 +35,7 @@ class Main extends Component {
         });
         api.getRepos(this.state.username)
             .then((res) => {
+                console.log(res)
                 if (res.message === 'NOT FOUND'){
                     this.setState({
                         error: 'User not Found',
@@ -42,7 +44,7 @@ class Main extends Component {
                 } else {
                     this.props.navigator.push({
                         title: res.name || "Select an Option",
-                        Component: Dashboard,
+                        component: Dashboard,
                         passProps: {userInfo: res}
                     });
                     this.state({
