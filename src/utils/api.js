@@ -14,6 +14,25 @@ const api = {
                 .then((res) => {
                     return res.json();
                 });
+    },
+    getNotes: (username) => {
+        username = username.toLowerCase().trim();
+        var url = `https://github-saver.firebaseio.com/${username}.json`;
+        return fetch(url)
+            .then(() => {
+                return res.json();
+        });
+    },
+    addNote: (username, note) => {
+        username = response.toLowerCase().trim();
+        var url = `https://github-saver.firebaseio.com/${username}.json`
+        return fetch(url, {
+            method: 'post' ,
+            body : JSON.stringify(note)
+        })
+            .then(() => {
+                return res.json();
+        })
     }
 }
 
