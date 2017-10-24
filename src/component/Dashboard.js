@@ -11,6 +11,8 @@ import {
   Image
 } from 'react-native';
 
+import Profile from './Profile'
+
 class Dashboard extends Component {
     makeBackground(btn){
         return {
@@ -27,7 +29,11 @@ class Dashboard extends Component {
     }
 
     gotoProfile() {
-        console.log('Going to profile page')
+        this.props.navigator.push({
+            title: "Profile",
+            component: Profile,
+            passProps: {userInfo: this.props.userInfo}
+        });
     }
 
     gotoRepos (){
@@ -77,12 +83,5 @@ const styles = {
         color: 'white',
         alignSelf: 'center'
     },
-    obj:{
-        flexDirection: 'row',
-        alignSelf: 'stretch',
-        justifyContent: 'center',
-        flex: 1,
-        backgroundColor: '#E77AAE'
-    }
 }
 export default Dashboard;
