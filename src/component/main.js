@@ -32,9 +32,9 @@ class Main extends Component {
         this.setState({
             isLoading: true
         });
-        api.getRepos(this.state.username)
+        api.getBio(this.state.username)
             .then((res) => {
-                console.log(res.message)
+                console.log(res)
                 if (res.message === "NOT FOUND"){
                     this.setState({
                         error: 'User not Found',
