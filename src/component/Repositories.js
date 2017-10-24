@@ -13,10 +13,15 @@ import {
 } from 'react-native';
 import Badge from './Badge';
 import Seperator from './helpers/Seperator';
+import WEBVIEW from './helpers/WebView'
 
 class Repositories extends Component {
     openPage(url){
-        console.log(url);
+        this.props.navigate.push({
+            component: WEBVIEW,
+            title: 'Web View',
+            passprops: {url}
+        });
     }
     render () {
         var repos = this.props.repos;
