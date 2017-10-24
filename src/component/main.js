@@ -4,14 +4,52 @@ import {
   StyleSheet,
   Text,
   View,
-  NavigatorIOS
+  NavigatorIOS,
+  TextInput,
+  TouchableHighlight,
+  ActivityIndicatorIOS
 } from 'react-native';
 
 class Main extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+          username: '',
+          isLoading: false,
+          error: false
+        }
+      }
+
+      handleChange(event) {
+        this.setState({
+            username: event.nativeEvent.text
+        })
+      }
+
+      handleSubmit() {
+        //update our indocatorIOS spinner
+        this.setState({
+            isLaoding: true
+        });
+        console.log('SUBMIT', this.state.username);
+        //fetch data from github
+        //reroute to the next passing in the guthub info
+      }
+
     render(){
         return (
             <View style={styles.mainContainer}>
-                    <Text> Testing Router</Text>
+                <Text style={styles.title}> Search For a Github User</Text>
+                <TextInput 
+                style={styles.searchInput}
+                value={this.state.username}
+                onChange={this.handleChange.bind(this)} />
+                <TouchableHighlight 
+                    style= {styles.button}
+                    onPress={this.handleSubmit.bind(this)}
+                    underlayColor="white">
+                    <Text style={styles.buttonText}>SEARCH</Text>
+                </TouchableHighlight>
             </View>
         )
     }
@@ -28,7 +66,7 @@ const styles = {
     },
     title: {
         marginBottom: 20,
-        fontsize: 25,
+        fontSize: 25,
         textAlign: 'center',
         color: '#fff'
     },

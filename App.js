@@ -10,7 +10,7 @@ import {
   StyleSheet,
   Text,
   View,
-  NavigatorIOS
+  NavigatorIOS,
 } from 'react-native';
 import Main from './src/component/main'
 
