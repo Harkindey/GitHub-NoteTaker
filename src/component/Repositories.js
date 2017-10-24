@@ -12,7 +12,7 @@ import {
   ScrollView
 } from 'react-native';
 import Badge from './Badge';
-import Seperators from './helpers/Seperator';
+import Seperator from './helpers/Seperator';
 
 class Repositories extends Component {
     openPage(url){
@@ -32,6 +32,7 @@ class Repositories extends Component {
                         </TouchableHighlight>
                         <Text style={styles.stars}> Stars: {repos[index].stargazers_count}</Text>
                         {desc}
+                        <Seperator />
                     </View>
                 </View>
             )

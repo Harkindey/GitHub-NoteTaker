@@ -11,8 +11,9 @@ import {
   Image
 } from 'react-native';
 
-import Profile from './Profile'
-import Repositories from './Repositories'
+import Profile from './Profile';
+import Repositories from './Repositories';
+import api from '../utils/api';
 
 class Dashboard extends Component {
     makeBackground(btn){
@@ -38,12 +39,15 @@ class Dashboard extends Component {
     }
 
     gotoRepos (){
-        api.getRepos(this.state.username)
+        api.getRepos(this.props.userInfo.login)
             .then((res) => {
                 this.props.navigator.push({
                     title: "Repositories",
                     component: Repositories,
-                    passProps: {repo: res}
+                    passProps: {
+                        repos: res,
+                        userInfo: this.props.userInfo
+                    }
                 });
             })
     }
