@@ -19,18 +19,19 @@ const api = {
         username = username.toLowerCase().trim();
         var url = `https://github-notetaker-46d8f.firebaseio.com/${username}.json`;
         return fetch(url)
-            .then(() => {
+            .then((res) => {
                 return res.json();
-        });
+        }).catch((err) => {
+            console.log(err);
+        })
     },
     addNote: (username, note) => {
-        username = response.toLowerCase().trim();
+        username = username.toLowerCase().trim();
         var url = `https://github-notetaker-46d8f.firebaseio.com/${username}.json`
         return fetch(url, {
             method: 'post' ,
             body : JSON.stringify(note)
-        })
-            .then(() => {
+        }).then((res) => {
                 return res.json();
         })
     }

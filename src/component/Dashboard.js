@@ -14,6 +14,7 @@ import {
 import Profile from './Profile';
 import Repositories from './Repositories';
 import api from '../utils/api';
+import Notes from './Notes'
 
 class Dashboard extends Component {
     makeBackground(btn){
@@ -53,7 +54,18 @@ class Dashboard extends Component {
     }
 
     gotoNotes() {
-        console.log("Going to Notes")
+        api.getNotes(this.props.userInfo.login)
+            .then((res) => {
+                const resp = (!res) ? {} : res
+                this.props.navigator.push({
+                    title: "Notes",
+                    component: Notes,
+                    passProps: {
+                        userInfo: this.props.userInfo,
+                        notes: resp
+                    }
+                });
+            })
     }
     render () {
         return (

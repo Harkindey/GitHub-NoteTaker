@@ -3,16 +3,17 @@ import {
   View,
   ListView,
   TextInput,
-  TouchableHighlight
+  TouchableHighlight,
+  Text
 } from 'react-native';
 import api from '../utils/api';
 import Seperator from './helpers/Seperator';
 import Badge from './Badge'
 
 class Notes extends Component {
-    constructor(){
+    constructor(props){
         super(props);
-        this.ds = new ListView.DataSource({rowHasChanged: (row1,row2) => row1 !== row2 });
+        this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2 });
         this.state = {
             dataSource: this.ds.cloneWithRows(this.props.notes),
             note: '',
@@ -32,9 +33,9 @@ class Notes extends Component {
         })
 
         api.addNote(this.props.userInfo.login, note)
-            .then(() => {
+            .then((data) => {
                 api.getNotes(this.props.userInfo.login)
-                    .then(() => {
+                    .then((data) => {
                         this.setState({
                             dataSource: this.ds.cloneWithRows(data)
                         })
@@ -46,17 +47,19 @@ class Notes extends Component {
     }
 
     renderRow(rowData) {
-        <View>
-            <View style={styles.rowContainer}>
-                <Text>{rowData}</Text>
+        return (
+            <View>
+                <View style={styles.rowContainer}>
+                    <Text>{rowData}</Text>
+                </View>
+                <Seperator />
             </View>
-            <Seperator />
-        </View>
+        )
     }
 
     footer() {
         return (
-            <View style={style.footerContainer}>
+            <View style={styles.footerContainer}>
                 <TextInput 
                     style={styles.searchInput}
                     value={this.state.note}
@@ -64,19 +67,19 @@ class Notes extends Component {
                     placeholder="New Note"/>
                     <TouchableHighlight 
                         style={styles.button}
-                        onPress={this.handleChange.bind(this)}
+                        onPress={this.handleSubmit.bind(this)}
                         underlayColor="#88D4F5">
-                            <Text style={style.buttonText}></Text>
+                            <Text style={styles.buttonText}> Submit</Text>
                     </TouchableHighlight>
             </View>
         )
     }
     render() {
         return(
-            <View style={style.container}>
+            <View style={styles.container}>
                 <ListView
                     dataSource={this.state.dataSource}
-                    render={this.renderRow}
+                    renderRow={this.renderRow}
                     renderHeader={() => <Badge userInfo={this.props.userInfo}/> }
                     /> 
                     {this.footer()}
