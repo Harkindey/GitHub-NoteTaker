@@ -17,7 +17,7 @@ const api = {
     },
     getNotes: (username) => {
         username = username.toLowerCase().trim();
-        var url = `https://github-saver.firebaseio.com/${username}.json`;
+        var url = `https://github-notetaker-46d8f.firebaseio.com/${username}.json`;
         return fetch(url)
             .then(() => {
                 return res.json();
@@ -25,7 +25,7 @@ const api = {
     },
     addNote: (username, note) => {
         username = response.toLowerCase().trim();
-        var url = `https://github-saver.firebaseio.com/${username}.json`
+        var url = `https://github-notetaker-46d8f.firebaseio.com/${username}.json`
         return fetch(url, {
             method: 'post' ,
             body : JSON.stringify(note)

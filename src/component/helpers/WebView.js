@@ -8,7 +8,7 @@ class WEBVIEW extends Component {
     render () {
         return (
             <View style={styles.container}>
-                <WebView url={this.props.url} />
+                <WebView source={{uri: this.props.url}} />
             </View>
         )
     }

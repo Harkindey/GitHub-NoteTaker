@@ -17,10 +17,10 @@ import WEBVIEW from './helpers/WebView'
 
 class Repositories extends Component {
     openPage(url){
-        this.props.navigate.push({
+        this.props.navigator.push({
             component: WEBVIEW,
             title: 'Web View',
-            passprops: {url}
+            passProps: {url}
         });
     }
     render () {
@@ -31,7 +31,7 @@ class Repositories extends Component {
                 <View key ={index}>
                     <View style={styles.rowContainer}>
                         <TouchableHighlight 
-                            onPress={this.openPage.bind(this,repos[index].html_url)}
+                            onPress={this.openPage.bind(this, repos[index].html_url)}
                             underlayColor='transparent'>
                             <Text style={styles.name}>{repos[index].name}</Text>
                         </TouchableHighlight>
