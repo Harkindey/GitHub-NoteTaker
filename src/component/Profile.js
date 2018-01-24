@@ -26,13 +26,15 @@ class Profile extends Component {
             if(!userInfo[item]){
                 return <View key={index} />
             } else {
-               return (<View key= { index }>
+               return (
+               <View key= { index }>
                     <View style={styles.rowContainer}>
                         <Text style={styles.rowTitle}>{this.getRowTitle(userInfo, item)}</Text>
                         <Text style={styles.rowContent}> {userInfo[item]} </Text>
                     </View>
                     <Seperator />
-                </View>)
+                </View>
+                )
             }
         });
         return (
